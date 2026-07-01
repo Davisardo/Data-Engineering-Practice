@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# File zip hasil download lab
+*.zip
+
+# Hasil eksekusi ETL (bisa di-generate ulang, gak perlu di-commit)
+transformed_data.csv
+log_file.txt
+
+# OS/editor
+.vscode/
+.DS_Store
