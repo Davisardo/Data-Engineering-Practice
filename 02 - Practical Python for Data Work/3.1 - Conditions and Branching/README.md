@@ -51,3 +51,50 @@ if row['price'] < 0 or row['quantity'] is None:
 ## Catatan Pribadi
 
 Poin penting: kode setelah blok `if` (di luar indentasi) **selalu jalan**, terlepas dari kondisi True/False — hanya kode **di dalam** indentasi yang bersyarat. Ini konsep dasar yang harus benar-benar dipahami sebelum lanjut ke loop dan fungsi.
+
+## Reading: Real-World Examples of Conditions & Branching
+
+Materi reading tambahan dari course, memberikan konteks penerapan nyata dari konsep yang sudah dipraktikkan di atas.
+
+### ELIF — Contoh ATM
+Branching bertingkat dipakai saat sistem punya lebih dari 2 kemungkinan jalur keputusan.
+```python
+user_choice = "Withdraw Cash"
+if user_choice == "Withdraw Cash":
+    amount = int(input("Enter the amount to withdraw: "))
+    if amount % 10 == 0:
+        print("Amount dispensed: ", amount)
+    else:
+        print("Please enter a multiple of 10.")
+else:
+    print("Thank you for using the ATM.")
+```
+
+### NOT — Contoh Notification Settings
+```python
+is_do_not_disturb = True
+if not is_do_not_disturb:
+    send_notification("New message received")
+```
+Analoginya: notifikasi hanya dikirim kalau kondisi "Do Not Disturb" **tidak** aktif.
+
+### AND — Contoh Access Control
+Dipakai saat semua syarat **wajib** terpenuhi sekaligus (mirip validasi data yang butuh beberapa kolom valid bersamaan).
+```python
+has_valid_id_card = True
+has_matching_fingerprint = True
+if has_valid_id_card and has_matching_fingerprint:
+    open_high_security_door()
+```
+
+### OR — Contoh Movie Night
+Dipakai saat **cukup satu saja** dari beberapa syarat terpenuhi.
+```python
+friend1_likes_comedy = True
+friend2_likes_action = False
+friend3_likes_drama = False
+if friend1_likes_comedy or friend2_likes_action or friend3_likes_drama:
+    choose_a_movie()
+```
+
+**Relevansi ke data engineering:** pola `AND` ini persis dipakai saat validasi data butuh banyak syarat sekaligus (misal: `if row['id'] is not None and row['date'] is not None and row['amount'] > 0:`), sementara `OR` cocok untuk deteksi anomali di mana **salah satu** kondisi error saja sudah cukup untuk menandai baris sebagai invalid.
