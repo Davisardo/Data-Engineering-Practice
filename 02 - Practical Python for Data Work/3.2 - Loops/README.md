@@ -56,3 +56,28 @@ for row in dataset:
 ## Catatan Pribadi
 
 Bagian quiz terakhir (skip kelipatan 3, stop kalau > 12) adalah contoh bagus kombinasi `continue` dan `break` dalam satu loop — pola ini persis yang dipakai saat filter data sekaligus membatasi jumlah baris yang diproses (mirip logic `count < 50` di lab web scraping sebelumnya).
+
+## Reading: Loop Flow & Kapan Pakai For vs While
+
+Materi reading tambahan dari course, memberikan kerangka umum cara berpikir tentang loop.
+
+### Anatomi Umum Loop
+Baik `for` maupun `while` mengikuti pola yang sama:
+
+1. **Initialization** — tentukan titik awal/kondisi awal
+2. **Condition** — tentukan kapan loop lanjut, kapan berhenti
+3. **Execution** — jalankan tugas di dalam loop
+4. **Update** — ubah kondisi/counter supaya loop bisa maju
+5. **Repeat** — kembali ke langkah 2 sampai kondisi tidak lagi terpenuhi
+
+Poin penting: langkah **Update** (misal `count += 1`) itu wajib ada di `while` loop, kalau lupa maka jadi **infinite loop** (loop tidak pernah berhenti) — ini beda dengan `for` loop yang otomatis berhenti begitu sequence-nya habis.
+
+### Kapan Pakai For vs While (Ringkas)
+
+| For Loop | While Loop |
+|---|---|
+| Jumlah iterasi **sudah diketahui** dari awal | Jumlah iterasi **belum pasti**, tergantung kondisi |
+| Cocok untuk iterasi koleksi/sequence (list, range) | Cocok untuk menunggu kondisi tertentu terpenuhi |
+| Otomatis berhenti saat sequence habis | Harus eksplisit ubah kondisi supaya berhenti |
+
+**Relevansi ke data engineering:** `for` loop dipakai saat kamu tahu pasti mau iterasi semua baris/file (misal semua CSV di folder), sedangkan `while` loop lebih cocok untuk skenario seperti retry koneksi API sampai berhasil, atau polling status job sampai selesai — di mana jumlah percobaan tidak bisa dipastikan sejak awal.
