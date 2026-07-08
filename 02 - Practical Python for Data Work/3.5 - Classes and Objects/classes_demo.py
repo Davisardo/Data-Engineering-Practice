@@ -112,3 +112,39 @@ print()  # pemisah biar rapi
 vehicle2 = Vehicle(180, 25)
 vehicle2.assign_seating_capacity(4)
 vehicle2.display_properties()
+
+# ===== 6. Reading: Real-World Example - Car Class =====
+
+class Car:
+    # Class attribute (sama untuk semua object)
+    max_speed = 120  # km/h
+
+    def __init__(self, make, model, color, speed=0):
+        self.make = make
+        self.model = model
+        self.color = color
+        self.speed = speed
+
+    def accelerate(self, acceleration):
+        # kecepatan tidak boleh melebihi max_speed
+        if self.speed + acceleration <= self.max_speed:
+            self.speed += acceleration
+        else:
+            self.speed = self.max_speed
+
+    def get_speed(self):
+        return self.speed
+
+
+# Membuat 2 object Car
+car1 = Car("Toyota", "Camry", "Blue")
+car2 = Car("Honda", "Civic", "Red")
+
+car1.accelerate(30)
+car2.accelerate(20)
+
+print(f"{car1.make} {car1.model} is currently at {car1.get_speed()} km/h.")
+print(f"{car2.make} {car2.model} is currently at {car2.get_speed()} km/h.")
+
+# Bukti class attribute bisa diakses lewat nama class langsung (bukan cuma lewat object)
+print("Max speed (class attribute):", Car.max_speed)

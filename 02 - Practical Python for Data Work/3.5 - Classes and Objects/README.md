@@ -64,3 +64,71 @@ Dibanding pakai variabel/dict terpisah untuk tiap sumber data, class ini mengelo
 ## Catatan Pribadi
 
 Bagian scenario Vehicle jadi contoh bagus perbedaan **class attribute** vs **instance attribute** — `color = "white"` didefinisikan sekali di level class dan otomatis berlaku untuk semua object (`vehicle1` dan `vehicle2` sama-sama warna putih), sementara `max_speed` dan `mileage` unik per object karena didefinisikan lewat `self` di dalam `__init__`.
+
+## Reading: Struktur Class & Real-World Example (Car)
+
+Materi reading tambahan dari course, merangkum struktur class secara sistematis dan memberi contoh nyata lengkap dengan method business logic (bukan cuma method gambar).
+
+### Anatomi Lengkap Sebuah Class
+
+```python
+class ClassName:
+    # Class attribute (dibagi oleh SEMUA instance)
+    class_attribute = value
+
+    # Constructor - inisialisasi instance attribute
+    def __init__(self, attribute1, attribute2):
+        self.attribute1 = attribute1
+        self.attribute2 = attribute2
+
+    # Instance method - beroperasi pada data instance
+    def method1(self, parameter1):
+        pass
+```
+
+### Dua Cara Memanggil Method
+```python
+# Cara 1: dot notation langsung
+result1 = object1.method1(param_value)
+
+# Cara 2: assign method ke variabel dulu, baru panggil
+method_reference = object1.method1
+result2 = method_reference(param_value)
+```
+
+### Akses & Modifikasi Atribut
+```python
+attribute_value = object1.attribute1     # baca atribut
+object1.attribute2 = new_value            # ubah atribut
+class_attr_value = ClassName.class_attribute   # akses class attribute langsung dari class (tanpa perlu object)
+```
+
+### Real-World Example: Car Class
+Contoh dengan business logic nyata (bukan cuma penyimpanan data) — method `accelerate()` punya validasi (tidak boleh melebihi `max_speed`), lebih representatif dibanding contoh Circle/Rectangle yang cuma soal drawing.
+
+```python
+class Car:
+    max_speed = 120  # class attribute
+
+    def __init__(self, make, model, color, speed=0):
+        self.make = make
+        self.model = model
+        self.color = color
+        self.speed = speed
+
+    def accelerate(self, acceleration):
+        if self.speed + acceleration <= self.max_speed:
+            self.speed += acceleration
+        else:
+            self.speed = self.max_speed   # dibatasi max_speed
+
+    def get_speed(self):
+        return self.speed
+
+
+car1 = Car("Toyota", "Camry", "Blue")
+car1.accelerate(30)
+print(f"{car1.make} {car1.model} is currently at {car1.get_speed()} km/h.")
+```
+
+**Relevansi ke data engineering:** pola validasi di `accelerate()` (`if kondisi: ... else: batasi nilai`) ini sama persis dengan pola **data validation** — misal fungsi yang membatasi nilai kolom tertentu supaya tidak melebihi batas wajar (data quality check), bukan cuma menyimpan nilai apa adanya.
