@@ -60,3 +60,34 @@ Ini contoh nyata kenapa append mode penting: kalau pakai `'w'`, tiap kali script
 ## Catatan Pribadi
 
 Exercise akhir lab ini (`clean_files()`) adalah contoh nyata **data cleaning tanpa Pandas** — murni pakai file I/O dan list comprehension (`[member for member in members if 'no' in member]`, konsep yang sudah dipelajari sejak lab List). Ini bagus untuk memahami apa yang terjadi "di balik layar" saat nanti pakai `pd.read_csv()` dan `df[df['active'] == 'no']` — konsepnya sama, cuma Pandas jauh lebih ringkas dan optimal.
+
+## Reading: Tabel Lengkap Mode File di Python
+
+Materi reading tambahan dari course, merangkum seluruh mode file yang tersedia di Python — termasuk mode `'x'` (exclusive) dan varian binary yang belum dipraktikkan di atas.
+
+### Tabel Referensi Mode File
+
+| Mode | Deskripsi |
+|---|---|
+| `'r'` | Read — buka file yang **sudah ada** untuk dibaca. Error kalau file tidak ada. |
+| `'w'` | Write — buat file baru untuk ditulis. **Menimpa total** kalau file sudah ada. |
+| `'a'` | Append — buka file untuk ditambah datanya. Membuat file baru kalau belum ada. |
+| `'x'` | Exclusive creation — buat file baru, tapi **error kalau file sudah ada** (mencegah menimpa tidak sengaja). |
+| `'r+'` | Read + Write — baca dan tulis file yang sudah ada, tanpa truncate otomatis. |
+| `'w+'` | Write + Read — buat file baru untuk tulis & baca, menimpa kalau sudah ada. |
+| `'a+'` | Append + Read — tambah data & bisa baca, membuat file baru kalau belum ada. |
+| `'x+'` | Exclusive + Read/Write — buat file baru untuk baca/tulis, error kalau sudah ada. |
+| `'rb'` / `'wb'` / `'ab'` | Versi **binary** dari `r`/`w`/`a` — untuk file non-teks (gambar, PDF, database file). |
+| `'rt'` / `'wt'` / `'at'` | Versi eksplisit **text mode** — sebenarnya default untuk file teks, jarang perlu ditulis eksplisit. |
+
+### Mode 'x' — Exclusive Creation (Belum Dipraktikkan)
+Berguna saat kamu ingin **mencegah menimpa file secara tidak sengaja** — misal saat generate laporan harian, kamu mau error muncul kalau file hari itu sudah pernah dibuat, daripada diam-diam menimpanya.
+```python
+try:
+    with open('laporan_2026-07-09.txt', 'x') as file:
+        file.write("Data laporan...")
+except FileExistsError:
+    print("File laporan hari ini sudah ada, tidak ditimpa.")
+```
+
+**Relevansi ke data engineering:** mode `'x'` ini best practice untuk output pipeline yang **tidak boleh double-run** tanpa disadari (misal file snapshot harian) — kombinasikan dengan exception handling (`try/except FileExistsError`) yang sudah dipelajari di lab 3.4.
