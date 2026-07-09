@@ -59,3 +59,35 @@ Untuk file berukuran GB, `read()` bisa bikin program **crash karena kehabisan me
 ## Catatan Pribadi
 
 Poin penting yang terbukti di lab ini: pemanggilan `read(n)` berkali-kali dalam 1 blok `with` **melanjutkan posisi** dari pembacaan sebelumnya, bukan mengulang dari awal — file object menyimpan "cursor" posisi baca internal, mirip bookmark yang bergerak maju setiap kali data dibaca.
+
+## Reading: seek() dan Loop Manual dengan readline()
+
+Materi reading tambahan dari course, memperkenalkan `seek()` dan pola loop manual pakai `readline()` (alternatif dari loop `for line in file:` yang sudah dipraktikkan).
+
+### seek() — Lompat ke Posisi Tertentu di File
+`seek()` memindahkan "cursor" file ke posisi byte tertentu, sebelum melakukan `read()`. Berguna kalau kamu butuh loncat langsung ke bagian tertentu file tanpa membaca dari awal.
+
+```python
+with open('example1.txt', 'r') as file:
+    file.seek(10)          # loncat ke byte ke-11 (index dimulai dari 0)
+    characters = file.read(5)   # baca 5 karakter dari posisi itu
+    print(characters)
+```
+
+**Relevansi ke data engineering:** `seek()` berguna saat memproses file log/data sangat besar di mana kamu sudah tahu byte offset bagian yang relevan (misal resume proses dari titik terakhir yang berhasil dibaca), tanpa perlu baca ulang seluruh file dari awal.
+
+### Loop Manual dengan readline() (Alternatif dari `for line in file:`)
+Pola ini melakukan hal yang sama seperti loop `for line in file:` yang sudah dipraktikkan, tapi lebih eksplisit — berguna kalau kamu butuh kontrol lebih (misal berhenti di kondisi tertentu, bukan cuma sampai akhir file).
+
+```python
+file = open('example1.txt', 'r')
+while True:
+    line = file.readline()
+    if not line:
+        break   # berhenti kalau sudah tidak ada baris lagi
+    print(line)
+file.close()
+```
+
+Pengecekan `if not line:` bekerja karena `readline()` mengembalikan **string kosong** (`''`) saat sudah mencapai akhir file — string kosong dievaluasi sebagai `False` di Python (falsy value).
+
