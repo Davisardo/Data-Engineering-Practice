@@ -56,3 +56,39 @@ np.dot(X, Y) # Dot product      -> [[2,1],[1,2]]  (aturan perkalian matriks)
 ## Catatan Pribadi
 
 Bukti nyata di lab ini (Cell 12 vs 13): `X * Y` menghasilkan `[[2,0],[0,2]]`, sementara `np.dot(X, Y)` menghasilkan `[[2,1],[1,2]]` — dua hasil yang **sama sekali berbeda** dari input yang sama. Kalau salah pilih operator ini di project nyata (misal saat menghitung transformasi data atau bobot model), hasilnya bisa salah total tanpa error yang jelas — karena secara sintaks kedua operasi valid, cuma maknanya beda.
+
+## Reading: Ringkasan Operasi NumPy & reshape()
+
+Materi reading tambahan dari course, merangkum ulang semua operasi NumPy (1D & 2D) dalam satu tabel referensi, plus 1 fungsi baru yang belum dipraktikkan: `reshape()`.
+
+### reshape() — Mengubah Bentuk Array Tanpa Mengubah Datanya
+
+```python
+arr = np.array([1, 2, 3, 4, 5, 6])
+reshaped_arr = arr.reshape(2, 3)
+print(reshaped_arr)
+# [[1 2 3]
+#  [4 5 6]]
+```
+`reshape()` mengatur ulang elemen array yang sama ke dimensi baru, selama **total elemennya tetap sama** (6 elemen tetap 6 elemen, cuma disusun ulang jadi 2×3 alih-alih 1×6).
+
+**Relevansi ke data engineering:** `reshape()` sering dipakai saat menyiapkan data untuk model ML — misal mengubah data gambar (flat array pixel) jadi bentuk matriks 2D/3D yang sesuai format input model, atau sebaliknya "meratakan" data multi-dimensi jadi 1D untuk disimpan ke tabel/CSV.
+
+### Tabel Referensi Lengkap Operasi NumPy
+
+| Operasi | Deskripsi | Contoh |
+|---|---|---|
+| Array Creation | Membuat array NumPy | `arr = np.array([1,2,3,4,5])` |
+| Element-Wise Arithmetic | Operasi antar array, posisi sama | `result = arr1 + arr2` |
+| Scalar Arithmetic | Operasi dengan konstanta tunggal | `result = arr * 2` |
+| Element-Wise Functions | Terapkan fungsi ke tiap elemen | `result = np.sqrt(arr)` |
+| Sum dan Mean | Total & rata-rata | `np.sum(arr)`, `np.mean(arr)` |
+| Max dan Min | Nilai tertinggi/terendah | `np.max(arr)`, `np.min(arr)` |
+| Reshaping | Ubah bentuk/dimensi array | `arr.reshape(2, 3)` |
+| Transposition | Tukar baris jadi kolom | `arr.T` |
+| Matrix Multiplication | Perkalian matriks (dot product) | `np.dot(matrix1, matrix2)` |
+
+### Kenapa NumPy Cepat — Ringkasan Alasan Teknis
+- **Efficient data structures** — array NumPy lebih hemat memori & lebih cepat dari list Python biasa.
+- **Performance optimization** — fungsi NumPy diimplementasikan di level C/Fortran (bahasa low-level), jauh lebih cepat dari eksekusi Python murni.
+- **Integrasi dengan library lain** — jadi fondasi untuk Pandas, SciPy, Matplotlib, dan hampir semua library data science di Python.
