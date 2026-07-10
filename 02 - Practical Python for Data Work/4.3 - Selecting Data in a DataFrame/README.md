@@ -56,3 +56,81 @@ Salah pilih bracket tunggal/ganda bisa bikin method berikutnya error atau hasiln
 ## Catatan Pribadi
 
 Lab ini jadi titik balik penting: mulai sekarang lab-lab yang lebih fokus eksplorasi data (Pandas, visualisasi) akan dikerjakan pakai Jupyter Notebook di VS Code, sementara lab yang fokus ke pipeline/automation script tetap pakai `.py` biasa — mengikuti pola kerja nyata di industri data engineering.
+
+
+## Reading: Pandas Series, DataFrame Attributes, dan Conditional Filtering
+
+Materi reading tambahan dari course, memperkenalkan konsep Series secara mandiri dan beberapa method DataFrame penting yang belum dipraktikkan di lab hands-on.
+
+### Pandas Series — Array 1 Dimensi dengan Label
+
+```python
+import pandas as pd
+
+data = [10, 20, 30, 40, 50]
+s = pd.Series(data)
+print(s)
+# Index otomatis 0,1,2,3,4 -- bisa diganti label custom
+```
+
+**Akses elemen Series:**
+```python
+print(s[2])       # akses berdasarkan label -> 30
+print(s.iloc[3])  # akses berdasarkan posisi -> 40
+print(s[1:4])     # slicing berdasarkan label
+```
+
+**Attribute & method penting Series (belum dipraktikkan di lab):**
+| Attribute/Method | Fungsi |
+|---|---|
+| `.values` | Data Series sebagai array NumPy |
+| `.index` | Label/index Series |
+| `.shape` | Dimensi Series |
+| `.size` | Jumlah elemen |
+| `.mean()`, `.sum()`, `.min()`, `.max()` | Statistik ringkasan |
+| `.unique()`, `.nunique()` | Nilai unik / jumlah nilai unik |
+| `.sort_values()`, `.sort_index()` | Urutkan berdasarkan nilai atau index |
+| `.isnull()`, `.notnull()` | Cek data kosong (NaN) |
+| `.apply()` | Terapkan fungsi custom ke tiap elemen |
+
+### DataFrame — Konsep Tambahan
+
+**Conditional Filtering — belum dipraktikkan di lab hands-on, tapi krusial:**
+```python
+# Filter baris berdasarkan kondisi (mirip WHERE di SQL)
+high_above_25 = df[df['Age'] > 25]
+```
+Ini pola yang **sangat sering** dipakai di data cleaning/analysis — filter baris berdasarkan syarat tertentu, dibahas juga di konteks lab Conditions sebelumnya (`&`/`|` untuk kombinasi kondisi).
+
+**unique() — cari nilai unik di satu kolom:**
+```python
+unique_ages = df['Age'].unique()
+```
+
+**Saving DataFrame ke file:**
+```python
+df.to_csv('output.csv', index=False)
+```
+`index=False` mencegah kolom index bawaan Pandas ikut tersimpan sebagai kolom terpisah di file CSV — pola yang sudah dipakai berkali-kali di lab-lab ETL sebelumnya.
+
+**Reading CSV — dasar sebelum dipraktikkan di lab-lab ETL selanjutnya:**
+```python
+df = pd.read_csv('your_file.csv')
+```
+
+### Tabel Lengkap Attribute & Method DataFrame
+
+| Attribute/Method | Fungsi |
+|---|---|
+| `.shape` | Dimensi (jumlah baris, kolom) |
+| `.info()` | Ringkasan tipe data & jumlah non-null per kolom |
+| `.describe()` | Statistik ringkasan untuk kolom numerik (mean, std, min, max, dst) |
+| `.head()`, `.tail()` | Lihat n baris pertama/terakhir |
+| `.mean()`, `.sum()`, `.min()`, `.max()` | Statistik per kolom |
+| `.sort_values()` | Urutkan berdasarkan 1 atau lebih kolom |
+| `.groupby()` | Kelompokkan data untuk agregasi (mirip `GROUP BY` di SQL) |
+| `.fillna()`, `.drop()`, `.rename()` | Isi data kosong, hapus kolom, ganti nama kolom |
+| `.apply()` | Terapkan fungsi custom ke elemen/baris/kolom |
+
+**Relevansi ke data engineering:** `.info()` dan `.describe()` adalah dua method **pertama** yang biasa dipanggil setelah load data baru — persis seperti tahap "structural check" dan "completeness check" di blueprint file eksplorasi data yang lebih besar (mirip pola `explore.py` di project-project data engineering nyata).
+
