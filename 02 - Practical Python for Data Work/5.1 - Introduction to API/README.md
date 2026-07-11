@@ -70,3 +70,25 @@ else:
 ## Catatan Pribadi
 
 Lab ini jadi bukti nyata perbedaan antara *belajar dari data statis* vs *bekerja dengan data live* — instruksi lab yang ditulis untuk 1 titik waktu tertentu (data lama) perlu disesuaikan logikanya (bukan cuma dijalankan mentah-mentah) ketika sumber datanya sudah berubah seiring waktu. Ini skill penting untuk data engineer nyata: kode yang robust harus bisa beradaptasi dengan perubahan data, bukan cuma bekerja untuk 1 snapshot data tertentu.
+
+
+## Reading: Konteks & Aplikasi Nyata API
+
+Materi reading tambahan dari course, memberi konteks lebih luas soal pentingnya API di industri sebelum masuk ke praktik teknis di atas.
+
+### Kenapa API Penting
+
+API mendefinisikan cara komponen software **saling berkomunikasi** tanpa perlu mengimplementasikan ulang fungsionalitas yang sudah ada di sistem lain. Ini menghemat waktu & resource developer — daripada membangun sistem pembayaran sendiri dari nol, misalnya, developer cukup **mengintegrasikan** API Stripe/PayPal yang sudah ada.
+
+### Contoh Aplikasi API di Industri Nyata
+
+| Sektor | Contoh | Fungsi API |
+|---|---|---|
+| Media sosial | Facebook, Twitter, Instagram | Akses data & fungsionalitas platform untuk aplikasi pihak ketiga |
+| E-commerce | Amazon, eBay | Akses katalog produk & data transaksi |
+| Cuaca | AccuWeather, The Weather Channel | Data cuaca real-time dari berbagai sumber |
+| Peta & navigasi | Google Maps, Waze | Data lokasi, rute, traffic |
+| Payment gateway | PayPal, Stripe | Pemrosesan pembayaran yang aman |
+| Messaging | WhatsApp, Messenger | Integrasi fitur pesan ke aplikasi lain |
+
+**Relevansi ke data engineering:** hampir semua sumber data eksternal di dunia kerja diakses lewat API — mulai dari data finansial (Stripe, payment gateway), data operasional (Google Maps untuk logistik), sampai data sosial media untuk analisis sentimen. Kemampuan konsumsi API (seperti NBA API yang dipraktikkan di lab ini) adalah skill yang **langsung terpakai** di hampir semua project data engineering nyata — jauh lebih umum dibanding sekadar membaca file CSV statis.
