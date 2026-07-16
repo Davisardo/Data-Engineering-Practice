@@ -1,0 +1,1 @@
+Halo, ini latihan pertama saya di vim.
