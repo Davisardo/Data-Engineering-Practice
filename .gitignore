@@ -21,3 +21,14 @@ flights_RUSSIA_small.sql
 important-documents.zip
 important-documents/
 backup-*.tar.gz
+
+# --- 08 - ETL Pipelines with Shell, Airflow and Kafka (Final Project - ETL Toll Data) ---
+.env
+**/dags/staging/
+**/dags/tolldata.tgz
+**/dags/*.csv
+**/dags/*.tsv
+**/dags/*.txt
+**/dags/._*
+**/logs/
+**/plugins/
