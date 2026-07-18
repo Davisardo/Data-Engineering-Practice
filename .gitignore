@@ -16,3 +16,8 @@ log_file.txt
 
 # Dataset besar - download manual via README, jangan di-track git
 flights_RUSSIA_small.sql
+
+# Final Project testing artifacts
+important-documents.zip
+important-documents/
+backup-*.tar.gz
