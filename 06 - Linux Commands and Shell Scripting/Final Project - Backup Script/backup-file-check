@@ -1,0 +1,9 @@
+total 32
+-rwxrwxrwx 1 davisardo25 davisardo25 3729 Jul 18 10:43 README.md
+-rwxrwxrwx 1 davisardo25 davisardo25 4428 Jul 18 10:26 backup-1784345177.tar.gz
+-rwxrwxrwx 1 davisardo25 davisardo25 4426 Jul 18 10:51 backup-1784346669.tar.gz
+-rwxrwxrwx 1 davisardo25 davisardo25    0 Jul 18 10:51 backup-file-check
+-rwxrwxrwx 1 davisardo25 davisardo25   65 Jul 18 10:50 backup-permissions
+-rwxrwxrwx 1 davisardo25 davisardo25 1450 Jul 18 10:23 backup.sh
+drwxrwxrwx 1 davisardo25 davisardo25 4096 Jul 18 10:51 important-documents
+-rwxrwxrwx 1 davisardo25 davisardo25 4995 Sep 28  2022 important-documents.zip
