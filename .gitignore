@@ -36,3 +36,22 @@ backup-*.tar.gz
 # Generated Spark ML artifacts (bisa dibuat ulang dari notebook)
 13 - Machine Learning with Apache Spark/**/*.parquet/
 13 - Machine Learning with Apache Spark/**/Final_Project/
+
+
+# --- 14 - Data Engineering Capstone Project ---
+# Data mentah hasil download dari IBM (bisa di-download ulang lewat README)
+14 - Data Engineering Capstone Project/**/*.csv
+14 - Data Engineering Capstone Project/**/*.json
+14 - Data Engineering Capstone Project/**/catalog.json
+
+# Hasil dump/export database (besar, bisa di-generate ulang via script)
+14 - Data Engineering Capstone Project/**/*.sql
+14 - Data Engineering Capstone Project/**/*.tar
+14 - Data Engineering Capstone Project/**/*.tar.gz
+
+# Model SparkML hasil training (besar, binary, bisa dibuat ulang dari notebook)
+14 - Data Engineering Capstone Project/**/*.model/
+14 - Data Engineering Capstone Project/**/model.tar.gz
+
+# Screenshot mentah sebelum dirapikan (opsional - biasanya screenshot final tetap di-commit)
+14 - Data Engineering Capstone Project/**/raw-screenshots/
