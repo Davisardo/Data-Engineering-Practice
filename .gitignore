@@ -36,3 +36,7 @@ backup-*.tar.gz
 # Generated Spark ML artifacts (bisa dibuat ulang dari notebook) 
 "13 - Machine Learning with Apache Spark/**/*.parquet/" 
 "13 - Machine Learning with Apache Spark/**/Final_Project/" 
+ 
+# Generated Spark ML artifacts (bisa dibuat ulang dari notebook) 
+"13 - Machine Learning with Apache Spark/**/*.parquet/" 
+"13 - Machine Learning with Apache Spark/**/Final_Project/" 
