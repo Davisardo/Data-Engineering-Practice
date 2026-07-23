@@ -31,4 +31,8 @@ backup-*.tar.gz
 **/dags/*.txt
 **/dags/._*
 **/logs/
-**/plugins/
+**/plugins/ 
+
+# Generated Spark ML artifacts (bisa dibuat ulang dari notebook) 
+"13 - Machine Learning with Apache Spark/**/*.parquet/" 
+"13 - Machine Learning with Apache Spark/**/Final_Project/" 
